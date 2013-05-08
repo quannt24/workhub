@@ -1,7 +1,7 @@
-<h2>Applications</h2>
-
+<h1>Applications</h1>
+<br />
 <?php if (isset($applications) && $applications != NULL) { ?>
-<table border="1">
+<table border="0" cellpadding="10" style="text-align: center">
   <tr>
     <th>CV Subject</th>
     <th>Job</th>

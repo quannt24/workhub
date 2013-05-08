@@ -1,54 +1,86 @@
-<h2>View Job</h2>
-
+<h1>View Job</h1>
+<br />
 <p><?php if ($job == NULL) echo "Unknown job"; else { ?></p>
 
-<h3><?php echo $job['Name']; ?></h3>
-<p>ID: <?php echo $job['JID']; ?></p>
-<p>Employer: <?php if ($employer != NULL) echo $employer['Name']; ?></p>
-<p>Status: <?php if ($job['Status'] == ACTIVE) echo "Active"; else echo "Inactive"; ?></p>
-<p>Expiration date: <?php echo $job['ExpiredDate']; ?></p>
+<table border="0" style="text-align: left">
+<!-- Information -->
+	<tr>
+		<th style="padding-right: 30px; vertical-align: top;" rowspan="5">Basic information</th>
+		<td>Job name: <?php echo $job['Name']; ?></td>
+	</tr>
+	<tr>
+		<td>ID: <?php echo $job['JID']; ?></td>
+	</tr>
+	<tr>
+		<td>Employer: <?php if ($employer != NULL) echo $employer['Name']; ?></td>
+	</tr>
+	<tr>
+		<td>Status: <?php if ($job['Status'] == ACTIVE) echo "Active"; else echo "Inactive"; ?></td>
+	</tr>
+	<tr>
+		<td>Expiration date: <?php echo $job['ExpiredDate']; ?></td>
+	</tr>
+	<tr><td></td></tr>
+<!-- Job Description -->
+	<tr>
+		<th style="padding-right: 30px; vertical-align: top;" rowspan="7">Job Description</th>
+		<td>
+			Job level: 
+			<?php
+			  foreach ($levels as $row) {
+			    if ($row['JLID'] == $job['JLID']) {
+			      echo $row['Name'];
+			      break;
+			    }
+			  }
+			?>
+		</td>
+	</tr>
 
-<h3>Job Description</h3>
-<p>Job level: <?php
-  foreach ($levels as $row) {
-    if ($row['JLID'] == $job['JLID']) {
-      echo $row['Name'];
-      break;
-    }
-  }
-  ?>
-</p>
-<p>Category: <?php
-  foreach ($categories as $row) {
-    if ($row['CAID'] == $job['CAID']) {
-      echo $row['Name'];
-      break;
-    }
-  }
-  ?>
-</p>
-<p>Min salary: <?php echo $job['MinSalary']; ?></p>
-<p>Max salary: <?php echo $job['MaxSalary']; ?></p>
-<p>Region: <?php
-  foreach ($regions as $row) {
-    if ($row['RID'] == $job['RID']) {
-      echo $row['Name'];
-      break;
-    }
-  }
-  ?>
-</p>
-<p>Address: <?php echo $job['Address']; ?></p>
-<p>Description:<br/><?php echo $job['Description']; ?></p>
+	<tr>
+		<td>
+			Category: 
+			<?php
+			  foreach ($categories as $row) {
+			    if ($row['CAID'] == $job['CAID']) {
+			      echo $row['Name'];
+			      break;
+			    }
+			  }
+			?>
+		</td>	
+	</tr>
 
-<h3>Job Requirements</h3>
+	<tr><td>Min salary: <?php echo $job['MinSalary']; ?></td></tr>
+	<tr><td>Max salary: <?php echo $job['MaxSalary']; ?></td></tr>
+	<tr>
+		<td>
+			Region: 
+			<?php
+			  foreach ($regions as $row) {
+			    if ($row['RID'] == $job['RID']) {
+			      echo $row['Name'];
+			      break;
+			    }
+			  }
+			?>
+		</td>
+	</tr>
+	<tr><td>Address: <?php echo $job['Address']; ?></td></tr>
+	<tr><td>Description: <?php echo $job['Description']; ?></td></tr>
+	<tr><td></td></tr>
+<!-- Job Requirements -->
+	<tr>
+		<th style="padding-right: 30px; vertical-align: top" rowspan="4">Job Requirements</th>
+		<td>Education: <?php echo $job['EduReq']; ?></td>
+	</tr>
+	<tr><td>Skills: <?php echo $job['SkillReq']; ?></td></tr>
+	<tr><td>Languages: <?php echo $job['LangReq']; ?></td></tr>
+	<tr><td>Experience: <?php echo $job['ExpReq']; ?></td></tr>
+	<tr><td></td></tr>
+</table>
 
-<p>Education: <?php echo $job['EduReq']; ?></p>
-<p>Skills: <?php echo $job['SkillReq']; ?></p>
-<p>Languages: <?php echo $job['LangReq']; ?></p>
-<p>Experience: <?php echo $job['ExpReq']; ?></p>
-
-<div>
+<div style="padding-bottom: 50px">
   <?php echo anchor('applicant/job/apply/'.$job['JID'], 'Apply'); ?>
 </div>
 

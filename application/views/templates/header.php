@@ -3,7 +3,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>WorkHub - <?php echo $title ?></title>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/styles/style.css" />
 </head>
 
 <body>
-	<h1>WorkHub</h1>
+<div class="wrapper" align="center">

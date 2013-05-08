@@ -1,27 +1,30 @@
-<h2>Manage CVs</h2>
+<h1>Manage CVs</h1>
 
 <?php if (isset($discarded) && $discarded == TRUE) echo "<p>Notice: CV is discarded</p>"; ?>
-<?php echo anchor('applicant/cv', 'Add'); ?>
-<table border="1">
-  <tr>
-    <th>ID</th>
-    <th>Subject</th>
-    <th>Active</th>
-    <th>Number of invitations</th>
-  </tr>
 
-  <?php foreach ($cvs as $row) if ($row['Status'] > DISABLED) { ?>
-  <tr>
-    <td><?php echo $row['CID']; ?></td>
-    <td><?php echo $row['Subject']; ?></td>
-    <td><?php echo ($row['Status'] == ACTIVE ? 'Yes' : '-'); ?></td>
-    <td><?php echo count($invs[$row['CID']]); ?></td>
-    <td><?php echo anchor('applicant/managecvs/examine/'.$row['CID'], 'Examine'); ?></td>
-    <td><?php echo anchor('applicant/cv/edit/'.$row['CID'], 'Edit'); ?></td>
-    <td><?php echo anchor('applicant/cv/discard/'.$row['CID'], 'Discard'); ?></td>
-  </tr>
-  <?php } /* Close 'foreach if' */ ?>
-</table>
+<div style="padding-bottom: 50px">
+	<table border="0" cellpadding="10" style="text-align: center">
+	  <tr>
+	    <th>ID</th>
+	    <th>Subject</th>
+	    <th>Active</th>
+	    <th>Number of invitations</th>
+	  </tr>
+	
+	  <?php foreach ($cvs as $row) if ($row['Status'] > DISABLED) { ?>
+	  <tr>
+	    <td><?php echo $row['CID']; ?></td>
+	    <td><?php echo $row['Subject']; ?></td>
+	    <td><?php echo ($row['Status'] == ACTIVE ? 'Yes' : '-'); ?></td>
+	    <td><?php echo count($invs[$row['CID']]); ?></td>
+	    <td><?php echo anchor('applicant/managecvs/examine/'.$row['CID'], 'Examine'); ?></td>
+	    <td><?php echo anchor('applicant/cv/edit/'.$row['CID'], 'Edit'); ?></td>
+	    <td><?php echo anchor('applicant/cv/discard/'.$row['CID'], 'Discard'); ?></td>
+	  </tr>
+	  <?php } /* Close 'foreach if' */ ?>
+	</table>
+	<?php echo anchor('applicant/cv', 'Add a CV'); ?>
+</div>
 
 <?php if ($excid > 0) { ?>
 <h3>Examine CV: <?php echo $excv.' - ID: '.$excid; ?></h3>
