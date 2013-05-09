@@ -1,7 +1,7 @@
-<h2>Invitations</h2>
-
+<h1>Invitations</h1>
+<br />
 <?php if (isset($invitations) && $invitations != NULL) { ?>
-<table border="1">
+<table border="0" cellpadding="10" style="text-align: center">
   <tr>
     <th>Job ID</th>
     <th>Job</th>

@@ -26,6 +26,7 @@
 	<?php echo anchor('applicant/cv', 'Add a CV'); ?>
 </div>
 
+<div style="padding-bottom: 50px">
 <?php if ($excid > 0) { ?>
 <h3>Examine CV: <?php echo $excv.' - ID: '.$excid; ?></h3>
 <table border="1">
@@ -84,3 +85,4 @@
   <?php } /* Close 'if foreach' */ ?>
 </table>
 <?php } /* Close if ($exjid > 0) */ ?>
+</div>

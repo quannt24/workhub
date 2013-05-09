@@ -1,32 +1,35 @@
-<h2>Search CVs</h2>
+<h1>Search CVs</h1>
 
-<?php echo validation_errors(); ?>
-<?php echo form_open('employer/verify_search'); ?>
-  <input type="text" size="60" name="search" placeholder="Education level, Skill, Language, Experience..."
-    value="<?php echo set_value('search'); ?>"/>
-  <input type="submit" value="Search"/>
-  <br/>
+<div style="padding-bottom: 50px">
+	<?php echo validation_errors(); ?>
+	<?php echo form_open('employer/verify_search'); ?>
+	  <input type="text" size="60" name="search" placeholder="Education level, Skill, Language, Experience..."
+	    value="<?php echo set_value('search'); ?>"/>
+	  <input type="submit" value="Search"/>
+	  <br/>
+	
+	  <select name="sex">
+	    <option value="-1">Any gender</option>
+	    <option value="<?php echo MALE; ?>">Male</option>
+	    <option value="<?php echo FEMALE; ?>">Female</option>
+	  </select>
+	
+	  <select name="region">
+	    <option value="0">Any region</option>
+	    <?php
+	    foreach ($regions as $row) {
+	      echo '<option value="'.$row['RID'].'" '.($row['RID'] == set_value('region') ? 'selected' : '').'>'.$row['Name'].'</option>';
+	    }
+	    ?>
+	  </select>
+	
+	</form>
+</div>
 
-  <select name="sex">
-    <option value="-1">Any gender</option>
-    <option value="<?php echo MALE; ?>">Male</option>
-    <option value="<?php echo FEMALE; ?>">Female</option>
-  </select>
-
-  <select name="region">
-    <option value="0">Any region</option>
-    <?php
-    foreach ($regions as $row) {
-      echo '<option value="'.$row['RID'].'" '.($row['RID'] == set_value('region') ? 'selected' : '').'>'.$row['Name'].'</option>';
-    }
-    ?>
-  </select>
-
-</form>
-
+<div style="padding-bottom: 50px">
 <?php if (isset($search_result) && $search_result != NULL) { ?>
-<h3>Search result</h3>
-<table border="1">
+<h2>Search result</h2>
+<table border="0" cellpadding="10" style="text-align: center">
   <tr>
     <th>CV's ID</th>
     <th>Name</th>
@@ -59,3 +62,4 @@
 
 </table>
 <?php } /* Close 'if ($search_result)' */ ?>
+</div>
