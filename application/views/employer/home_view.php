@@ -1,11 +1,11 @@
-<h2>Home</h2>
-
-<h3>Search CVs</h3>
-<?php echo form_open('employer/verify_search'); ?>
-  <input type="text" size="60" name="search"
+<!-- Search -->
+<div style="padding-bottom: 50px">
+	<h1>Search</h1>
+	<?php echo form_open('employer/verify_search'); ?>
+  	<input type="text" size="60" name="search"
     placeholder="Education level, Skill, Language, Experience..."
     value="<?php echo set_value('search'); ?>"/>
-  <input type="submit" value="Search"/>
+  	<input type="submit" value="Search"/>
   <br/>
 
   <select name="sex">
@@ -22,33 +22,26 @@
     }
     ?>
   </select>
-
 </form>
+</div>
 
-<table>
-  <tr>
+<!-- View Jobs -->
+<div style="padding-bottom: 50px">
+	<?php if (isset($jobs) && $jobs != NULL) { ?>
+    <h1>Jobs</h1>
+    <?php } /* Close if */ ?>
+    
     <?php if (isset($jobs) && $jobs != NULL) { ?>
-    <th><h3>Jobs</h3></th>
-    <?php } /* Close if */ ?>
-
-    <?php if (isset($invitations) && $invitations != NULL) { ?>
-    <th><h3>Invitations</h3></th>
-    <?php } /* Close if */ ?>
-  </tr>
-  <tr>
-    <td>
-      <!-- View Jobs -->
-      <?php if (isset($jobs) && $jobs != NULL) { ?>
-      <table border="1">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Expired date</th>
-          <th>Active</th>
-          <th>NoA</th>
-        </tr>
-
-        <?php foreach ($jobs as $row) if ($row['Status'] > DISABLED) { ?>
+    <table border="0" cellpadding="10" style="text-align: center">
+    	<tr>
+    		<th>ID</th>
+        	<th>Name</th>
+        	<th>Expired date</th>
+        	<th>Active</th>
+        	<th>NoA</th>
+    	</tr>
+    	
+    	<?php foreach ($jobs as $row) if ($row['Status'] > DISABLED) { ?>
         <tr>
           <td><?php echo $row['JID']; ?></td>
           <td><?php echo $row['Name']; ?></td>
@@ -62,21 +55,25 @@
         <?php } /* Close 'foreach if' */ ?>
       </table>
       <?php } /* Close if */ ?>
-    </td>
+</div>
 
-    <td>
-      <!-- View Invitations -->
-      <?php if (isset($invitations) && $invitations != NULL) { ?>
-      <table border="1">
-        <tr>
+<!-- View Invitations -->
+<div style="padding-bottom: 50px">
+	<?php if (isset($invitations) && $invitations != NULL) { ?>
+	<h1>Invitations</h1>
+	<?php } /* Close if */ ?>
+	
+	<?php if (isset($invitations) && $invitations != NULL) { ?>
+	<table border="0" cellpadding="10" style="text-align: center">
+		<tr>
           <th>Job ID</th>
           <th>Job</th>
           <th>CV ID</th>
           <th>Applicant</th>
-          <th>Status</th>
-        </tr>
-
-        <?php foreach ($invitations as $row) { ?>
+          <th>Status</th>			
+		</tr>
+		
+		<?php foreach ($invitations as $row) { ?>
         <tr>
           <td><?php echo $row['JID']; ?></td>
           <td><?php echo $row['Job_Name']; ?></td>
@@ -95,6 +92,4 @@
         <?php } /* Close 'foreach' */ ?>
       </table>
       <?php } /* Close if */ ?>
-    </td>
-  </tr>
-</table>
+</div>
