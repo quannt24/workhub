@@ -25,11 +25,16 @@ class Cv_model extends CI_Model {
     $this->db->where($where);
 
     if ($keyword != NULL && strlen($keyword) > 0) {
-      $this->db->like('CV.EduLev', $keyword);
-      $this->db->or_like('CV.Skill', $keyword);
-      $this->db->or_like('CV.Language', $keyword);
-      $this->db->or_like('CV.Exp', $keyword);
-      $this->db->or_like('CV.AddInfo', $keyword);
+      $keyword = str_replace('%20', ' ', $keyword);
+      $split = preg_split('/[ \.]/', $keyword);
+
+      foreach ($split as $seg) {
+        $this->db->or_like('CV.EduLev', $seg);
+        $this->db->or_like('CV.Skill', $seg);
+        $this->db->or_like('CV.Language', $seg);
+        $this->db->or_like('CV.Exp', $seg);
+        $this->db->or_like('CV.AddInfo', $seg);
+      }
     }
 
     $query = $this->db->get();

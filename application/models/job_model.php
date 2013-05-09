@@ -23,7 +23,12 @@ class Job_model extends CI_Model {
     $this->db->where($where);
 
     if ($keyword != NULL && strlen($keyword) > 0) {
-      $this->db->like('Job.Name', $keyword);
+      $keyword = str_replace('%20', ' ', $keyword);
+      $split = preg_split('/[ \.]/', $keyword);
+
+      foreach ($split as $seg) {
+        $this->db->or_like('Job.Name', $seg);
+      }
     }
 
     $query = $this->db->get();
