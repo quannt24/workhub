@@ -1,4 +1,4 @@
-<div>
+<div style="float: right; padding-right: 20px">
   <?php
   if (isset($username)) {
     echo 'Welcome '.$username.' | ';

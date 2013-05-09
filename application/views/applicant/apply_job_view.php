@@ -17,7 +17,7 @@
 </table>
 </div>
 
-<div style="padding-bottom: 50px"
+<div style="padding-bottom: 50px">
 <p>Please select one of your CVs. Note: You cannot use a CV to apply for a job twice.</p>
 
   <?php
